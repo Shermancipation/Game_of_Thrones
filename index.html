@@ -8,72 +8,30 @@
         <script>
           $(document).ready(function(){
             $(document).on('click', 'img', function(){
-              var house = $(this).attr("alt");
+              var house = $(this).attr("id");
               console.log("House is:" + house);
-                if(house === "stark"){
-                  $.get('https://www.anapioficeandfire.com/api/houses/362', function(res){
-                    var stark = "";
-                    var starktitle = "";
-                    stark += "<h3>Name: " + res.name + "</h3>";
-                    stark += "<h3>Words: " + res.words + "</h3>";
+                  $.get('https://www.anapioficeandfire.com/api/houses/' + house, function(res){
+                    var house_str = "";
+                    var house_strtitle = "";
+                    house_str += "<h3>Name: " + res.name + "</h3>";
+                    house_str += "<h3>Words: " + res.words + "</h3>";
                     for(var i = 0; i < res.titles.length; i++){
-                       starktitle += res.titles[i] + ".  ";
+                       house_strtitle += res.titles[i] + ".  ";
                     }
-                    stark += "<h3>Titles: " + starktitle + "</h3>";
-                    $("#houseDetails").html(stark);
+                    house_str += "<h3>Titles: " + house_strtitle + "</h3>";
+                    $("#houseDetails").html(house_str);
                   });
-                }
-
-                if(house === "lannister"){
-                  $.get('https://www.anapioficeandfire.com/api/houses/229', function(res){
-                    var lannister = "";
-                    var lannistertitle = "";
-                    lannister += "<h3>Name: " + res.name + "</h3>";
-                    lannister += "<h3>Words: " + res.words + "</h3>";
-                    for(var i = 0; i < res.titles.length; i++){
-                       lannistertitle += res.titles[i] + ".  ";
-                    }
-                    lannister += "<h3>Titles: " + lannistertitle + "</h3>";
-                    $("#houseDetails").html(lannister);
-                  });
-                }
-                if(house === "targaryen"){
-                  $.get('https://www.anapioficeandfire.com/api/houses/378', function(res){
-                    var targaryen = "";
-                    var targaryentitle = "";
-                    targaryen += "<h3>Name: " + res.name + "</h3>";
-                    targaryen += "<h3>Words: " + res.words + "</h3>";
-                    for(var i = 0; i < res.titles.length; i++){
-                       targaryentitle += res.titles[i] + ".  ";
-                    }
-                    targaryen += "<h3>Titles: " + targaryentitle + "</h3>";
-                    $("#houseDetails").html(targaryen);
-                  });
-                }
-                if(house === "baratheon"){
-                  $.get('https://www.anapioficeandfire.com/api/houses/17', function(res){
-                    var baratheon = "";
-                    var baratheontitle = "";
-                    baratheon += "<h3>Name: " + res.name + "</h3>";
-                    baratheon += "<h3>Words: " + res.words + "</h3>";
-                    for(var i = 0; i < res.titles.length; i++){
-                       baratheontitle += res.titles[i] + ".  ";
-                    }
-                    baratheon += "<h3>Titles: " + baratheontitle + "</h3>";
-                    $("#houseDetails").html(baratheon);
+                });
               });
-            };
-          });
-        });
         </script>
     </head>
     <body>
       <div id="wrapper">
         <div id="images">
-          <img src="stark.jpg" alt="stark">
-          <img src="targaryen.jpg" alt="targaryen">
-          <img src="lannister.jpg" alt="lannister">
-          <img src="baratheon.png" alt="baratheon">
+          <img id="362" src="stark.jpg" alt="stark">
+          <img id="229" src="targaryen.jpg" alt="targaryen">
+          <img id="378" src="lannister.jpg" alt="lannister">
+          <img id="17" src="baratheon.png" alt="baratheon">
           <h1>House Details:</h1>
         </div>
         <div id="houseDetails">
