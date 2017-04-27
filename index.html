@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <title>Game of Thrones</title>
+        <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+        <script>
+          $(document).ready(function(){
+            $(document).on('click', 'img', function(){
+              var house = $(this).attr("alt");
+              console.log("House is:" + house);
+                if(house === "stark"){
+                  $.get('https://www.anapioficeandfire.com/api/houses/362', function(res){
+                    var stark = "";
+                    stark += "<h3>Name: " + res.name + "</h3>";
+                    stark += "<h3>Words: " + res.words + "</h3>";
+                    stark += "<h3>Titles: " + res.titles + "</h3>";
+                    $("#houseDetails").html(stark);
+                  });
+                }
+
+                if(house === "lannister"){
+                  $.get('https://www.anapioficeandfire.com/api/houses/229', function(res){
+                    var lannister = "";
+                    lannister += "<h3>Name: " + res.name + "</h3>";
+                    lannister += "<h3>Words: " + res.words + "</h3>";
+                    lannister += "<h3>Titles: " + res.titles + "</h3>";
+                    $("#houseDetails").html(lannister);
+                  });
+                }
+
+                if(house === "targaryen"){
+                  $.get('https://www.anapioficeandfire.com/api/houses/378', function(res){
+                    var targaryen = "";
+                    targaryen += "<h3>Name: " + res.name + "</h3>";
+                    targaryen += "<h3>Words: " + res.words + "</h3>";
+                    targaryen += "<h3>Titles: " + res.titles + "</h3>";
+                    $("#houseDetails").html(targaryen);
+                  });
+                }
+
+                if(house === "baratheon"){
+                  $.get('https://www.anapioficeandfire.com/api/houses/17', function(res){
+                    var baratheon = "";
+                    baratheon += "<h3>Name: " + res.name + "</h3>";
+                    baratheon += "<h3>Words: " + res.words + "</h3>";
+                    baratheon += "<h3>Titles: " + res.titles + "</h3>";
+                    $("#houseDetails").html(baratheon);
+                  });
+                }
+              });
+            });
+        </script>
+    </head>
+    <body>
+      <div id="wrapper">
+        <div id="images">
+          <img src="stark.jpg" alt="stark">
+          <img src="targaryen.jpg" alt="targaryen">
+          <img src="lannister.jpg" alt="lannister">
+          <img src="baratheon.png" alt="baratheon">
+        </div>
+        <div id="houseDetails">
+        </div>
+      </div>
+    </body>
+</html>
